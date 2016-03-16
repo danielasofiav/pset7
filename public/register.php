@@ -13,6 +13,7 @@
     // else if user reached page via POST (as by submitting a form via POST)
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
+
         // TODO
         // valid passwords?
         if ($_POST["username"] == null)
@@ -31,13 +32,18 @@
         {
             apologize("Your paswords do not match!");
         }
+        if (empty($_POST["name"]) || empty($_POST["lastname"]) )
+        {
+            apologize("Enter your full name!");
+        }
         // agregar el nuevo id a la database
-        $result = CS50::query("INSERT INTO users (username, hash, cash) VALUES(?, ?, 10000.00)",$_POST['username'],password_hash($_POST["password"], PASSWORD_DEFAULT));
+        $result = CS50::query("INSERT INTO users (username, hash, cash,name, lastname) VALUES(?, ?, 10000.00,?,?)",$_POST['username'],password_hash($_POST["password"], PASSWORD_DEFAULT),$_POST['name'],$_POST['lastname']);
         // si ya existe
         if ($result === false)
         {
             apologize("This username already exists.");
         }
+        
         // entrar a index
         else
         {

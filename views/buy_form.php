@@ -1,7 +1,7 @@
 <form action="buy.php" method="post">
     <fieldset>
         <div class="form-group">
-            <input autofocus class="form-control" name="symbol" placeholder="Symbol" type="text"/>
+            <input autofocus class="form-control" value="<?= $symbol ?>" name="symbol" placeholder="Symbol" type="text"/>
         </div>
         
         <div class="form-group">

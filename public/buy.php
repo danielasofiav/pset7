@@ -5,8 +5,11 @@
     // if form was submitted
     if ($_SERVER["REQUEST_METHOD"] == "GET")
     {
+        //dump($_GET);
+        // crear variable
+        $symbol = empty($_GET["symbol"]) ? "" : $_GET["symbol"];
         // else render form
-        render("buy_form.php", ["title" => "Buy"]);
+        render("buy_form.php", ["title" => "Buy","symbol"=>$symbol]);
     }
     // else if user reached page via POST (as by submitting a form via POST)
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
