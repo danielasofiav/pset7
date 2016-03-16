@@ -35,12 +35,21 @@
                 </div>
                 <?php if (!empty($_SESSION["id"])): ?>
                     <ul class="nav nav-pills">
-                        <li><a href="quote.php">Quotezzzzz</a></li>
+                        <li><a href="quote.php">Quote</a></li>
                         <li><a href="buy.php">Buy</a></li>
                         <li><a href="sell.php">Sell</a></li>
                         <li><a href="history.php">History</a></li>
-                        <li><a href="feature.php">Deposit Money</a></li>
-                        <li><a href="logout.php"><strong>Log Out</strong></a></li>
+                        
+                        
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                              <?= $name["name"] . " " . $name["lastname"] ?> <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="feature.php">Deposit Money</a></li>
+                                <li><a href="logout.php"><strong>Log Out</strong></a></li>
+                            </ul>
+                        </li>
                     </ul>
                 <?php endif ?>
             </div>

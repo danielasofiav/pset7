@@ -141,7 +141,14 @@
         {
             // extract variables into local scope
             extract($values);
-
+            
+            if (!empty($_SESSION["id"]))
+            {
+                // inject name and lastname to all views
+                $name = CS50::query("SELECT name, lastname FROM users WHERE id = ?", $_SESSION["id"]);
+                $name = $name[0];    
+            }    
+            
             // render view (between header and footer)
             require("../views/header.php");
             require("../views/{$view}");
