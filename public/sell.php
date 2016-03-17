@@ -12,17 +12,46 @@
      // else if user reached page via POST (as by submitting a form via POST)
     else if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
+        if ($_POST["symbol"]=='symbol')
+        {
+            apologize("Please enter the stock symbol.");
+        }
         $shares = CS50::query("SELECT shares FROM portafolio WHERE user_id = ? AND symbol = ?", $_SESSION["id"],$_POST["symbol"]);
         $stock = lookup($_POST["symbol"]);
-     
+        
         $gain = $shares[0]["shares"] * $stock["price"];
         
-        // para eliminar sumar lo que se gano de la venta de la accion:
-        CS50::query("UPDATE users SET cash = (cash + ".$gain.") WHERE id = ?", $_SESSION["id"]);
+        $sell_share = $_POST["sell_share"];
         
-        // para eliminar el symbol q ya se vendio:
-        $rows = CS50::query("DELETE FROM portafolio WHERE user_id = ? AND symbol = ?", $_SESSION["id"], $stock["symbol"]);
-        CS50::query("INSERT INTO History (user_id, Transaction, Created_at, Symbol, Shares, Price) VALUES (?,'SELL',NOW(),?,?,?)", $_SESSION["id"], $_POST["symbol"], $shares[0]["shares"], $stock["price"]); 
-        redirect("/");
+        if ($_POST["sell_share"] == NULL)
+        {
+            apologize("Please enter the number of shares you want to sell.");
+        }
+        else if ($_POST["sell_share"] < 0)
+        {
+            apologize("Be sure you entered a positive number.");
+        }
+        else if ($_POST["sell_share"] > $shares[0]["shares"])
+        {
+            apologize("You don't have that amount of shares. Shares can't be sold.");
+        }
+        
+        $value = $stock["price"] * $sell_share; // punto y coma ....... se llama value
+        
+        // para sumar lo que se gano de la venta de la accion:
+       if ($_POST["sell_share"] < $shares[0]["shares"])
+        {
+            $rows = CS50::query("UPDATE portafolio SET shares = (shares - ".$sell_share.") WHERE user_id = ? AND symbol = ?", $_SESSION["id"], $stock["symbol"]);
+        }
+        else if ($_POST["sell_share"] == $shares[0]["shares"])
+        {
+            $rows = CS50::query("DELETE FROM portafolio WHERE user_id = ? AND symbol = ?", $_SESSION["id"], $stock["symbol"]);
+        }
+        
+        CS50::query("UPDATE users SET cash = (cash + ".$value.") WHERE id = ?", $_SESSION["id"]);
+        $type = 'Sell';
+        CS50::query("INSERT INTO History (user_id, Transaction, Symbol, Shares, Price) VALUES (?, ?, ?, ?, ?)", $_SESSION["id"], $type, $_POST["symbol"], $shares[0]["shares"], $stock["price"]);
+        
+        redirect("/");    
     }
 ?>
