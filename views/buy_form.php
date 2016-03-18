@@ -13,5 +13,8 @@
             <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
             </button>
         </div>
+        <div>
+            <img src="https://www.wise-owl.com/media/cache/education_article_show/uploads/education_articles/5da0dbce9b04_how-to-buy-and-sell-shares.jpg" class="img-responsive" alt="Responsive image">
+        </div>
     </fieldset>
 </form>
