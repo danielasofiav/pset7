@@ -9,6 +9,7 @@
                 <span aria-hidden="true" class="glyphicon glyphicon-share"></span>
                 Deposit!
             </button>
+            <img src="http://www.binaryoptionscity.com/wp-content/uploads/2014/06/deposit-money.gif" class="img-responsive" alt="Responsive image">
         </div>
     </fieldset>
 </form>
