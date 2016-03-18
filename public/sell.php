@@ -35,7 +35,7 @@
         {
             apologize("You don't have that amount of shares. Shares can't be sold.");
         }
-        else if(!preg_match("/^\d+$/", $_POST["shares"]))
+        else if(!preg_match("/^\d+$/", $_POST["sell_share"]))
         {
             apologize("You have to enter the amount of shares you want to buy (a postive entire number).");
         }
