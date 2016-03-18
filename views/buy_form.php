@@ -9,7 +9,9 @@
         </div>
         
         <div class="form-group">
-            <button type="submit" class="btn btn-default"> Buy </button>
+            <button type="submit" class="btn btn-default"> Buy 
+            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            </button>
         </div>
     </fieldset>
 </form>
