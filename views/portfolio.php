@@ -4,7 +4,7 @@
 			echo("Hi!, ". $cash[0]["username"] .". Your current cash balance is: $" . sprintf("%.2f",$cash[0]["cash"])."");
 		?>
 	</div>
-    <table class="table table-condensed">
+    <table class="table table-striped">
 		<?php
 		("<tr>");
 				echo("<th>Symbol</th>");
