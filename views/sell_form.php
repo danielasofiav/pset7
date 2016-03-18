@@ -20,5 +20,9 @@
                     Sell
                 </button>
             </div>
+            <div>
+                <img src="https://assets.entrepreneur.com/blog/h1/sell-shares-without-going-public.jpg" class="img-responsive" alt="Responsive image">
+        </div>
+            </div>
         </fieldset>
 </form>
